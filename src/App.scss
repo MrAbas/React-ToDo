@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,28 @@
   to {
     transform: rotate(360deg);
   }
+} */
+.container {
+  margin: 0 auto;
+  max-width: 750px;
+  min-height: 710px;
 }
+.header {
+  max-width: 750px;
+  min-height: 135px;
+  padding-top: 40px;
+}
+.title_header {
+  color: #252525;
+  font-family: Kanit;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 18px;
+}
+
+/* .wrapper {
+} */
