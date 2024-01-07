@@ -1,6 +1,7 @@
 import React from "react"; // Он нужен ?
 import "./App.scss";
-import ElementActive from "./Elements";
+import ElementsActive from "./Elements";
+import Main from "./Main";
 /* import { useState, useEffect } from "react";
 import TodoItem from "./components/TodoItem/TodoItem"; */
 
@@ -22,15 +23,11 @@ function App() {
     <div className="container">
       <div className="header">
         <h1 className="title_header">TODO LIST</h1>
-        <ElementActive />
+        <ElementsActive />
+        <Main />
       </div>
-      <ToDo />
     </div>
   );
 }
-
-const ToDo = () => {
-  return <div>Test</div>;
-};
 
 export default App;
