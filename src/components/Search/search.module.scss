@@ -1,0 +1,28 @@
+.wrapper {
+  position: relative;
+  max-width: 750px;
+  width: 100%;
+  display: flex;
+}
+.input_search {
+  max-width: 595px;
+  width: 100%;
+  min-height: 38px;
+  border-radius: 5px;
+  border: 1px solid #6c63ff;
+}
+.btn_search {
+  max-width: 21px;
+  width: 100%;
+  min-height: 21px;
+  position: absolute;
+  background: transparent;
+  background-image: url("../../../img/btn-search.svg");
+  background-repeat: no-repeat;
+  border: none;
+  left: 560px;
+  top: 7px;
+  bottom: 4px;
+  padding: 0;
+  cursor: pointer;
+}

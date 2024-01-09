@@ -1,0 +1,50 @@
+.note {
+  display: flex;
+  align-items: center;
+  max-width: 525px;
+  min-height: 26px;
+}
+.checkbox_note {
+  width: 26px;
+  min-height: 26px;
+  margin-right: 17px;
+  border-radius: 2px;
+  border: 1px solid #6c63ff;
+  background: #6c63ff;
+  cursor: pointer;
+}
+.text_note {
+  max-width: 420px;
+  width: 100%;
+  min-height: 20px;
+  margin: 0;
+  color: #252525;
+  font-family: Kanit;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  text-align: center;
+}
+.btns_note {
+  display: flex;
+  width: 62px;
+  height: 18px;
+  justify-content: space-around;
+}
+.btn_change {
+  width: 18px;
+  height: 18px;
+  background-color: transparent;
+  border: none;
+  background-image: url("../../../img/change-img.svg");
+  cursor: pointer;
+}
+.btn_deleted {
+  width: 18px;
+  height: 18px;
+  background-color: transparent;
+  border: none;
+  background-image: url("../../../img/deleted_img.svg");
+  cursor: pointer;
+}

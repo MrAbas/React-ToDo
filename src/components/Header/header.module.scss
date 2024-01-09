@@ -1,0 +1,22 @@
+.header {
+  max-width: 750px;
+  width: 100%;
+  min-height: 135px;
+  padding-top: 40px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.title_header {
+  color: #252525;
+  font-family: Kanit;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 18px;
+}
