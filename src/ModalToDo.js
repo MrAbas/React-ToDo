@@ -1,10 +1,11 @@
 import { useState } from "react";
-import "./App.scss";
-import { Button } from "react-bootstrap";
-import Modal from "react-bootstrap/Modal";
 import { useEffect } from "react";
+import { Button } from "react-bootstrap";
+import modalToDo from "./modalToDo.module.scss";
+import "./App.scss";
+import Modal from "react-bootstrap/Modal";
 
-const ModalToDo = ({ open, onClose }) => {
+export const ModalToDo = ({ open, onClose }) => {
   const [modalOpen, setModalOpen] = useState("");
   useEffect(() => {
     if (open) {
@@ -14,19 +15,25 @@ const ModalToDo = ({ open, onClose }) => {
     }
   }, [open]); // каждый раз когда open меняется запускается useEffect
 
-  console.log(open);
   return (
     <div
       className={modalOpen} // заменить на classNames
       style={{ display: "block", position: "absolute" }}
     >
-      <Modal.Dialog>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+      <Modal.Dialog className={modalToDo.modal_content}>
+        <Modal.Header className={modalToDo.modalHeader} closeButton>
+          <Modal.Title className={modalToDo.modalTitle}>
+            Modal title
+          </Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          <p>Modal body text goes here.</p>
+          <input
+            type="text"
+            className={modalToDo.modal_input}
+            /*   placeholder="Input your note..."
+            autoComplete="off" */
+          />
         </Modal.Body>
 
         <Modal.Footer>
@@ -39,5 +46,3 @@ const ModalToDo = ({ open, onClose }) => {
     </div>
   );
 };
-
-export default ModalToDo;

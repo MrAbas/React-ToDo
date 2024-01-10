@@ -1,0 +1,28 @@
+.modal_content {
+  max-width: 500px;
+  min-height: 289px;
+  border-radius: 16px;
+}
+.modalHeader {
+  min-height: 67px;
+  max-width: 500px;
+  border-radius: 16px;
+  background: #f7f7f7;
+}
+.modal_input {
+  max-width: 440px;
+  width: 100%;
+  min-height: 38px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: 1px solid #6c63ff;
+}
+.modalTitle {
+  color: #252525;
+  font-family: Kanit;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%; /* 24px */
+  text-transform: uppercase;
+}
