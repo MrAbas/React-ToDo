@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import modalToDo from "./modalToDo.module.scss";
-import "./App.scss";
 import Modal from "react-bootstrap/Modal";
 
 export const ModalToDo = ({ open, onClose }) => {
@@ -21,13 +20,16 @@ export const ModalToDo = ({ open, onClose }) => {
       style={{ display: "block", position: "absolute" }}
     >
       <Modal.Dialog className={modalToDo.modal_content}>
-        <Modal.Header className={modalToDo.modalHeader} closeButton>
+        {/* <Modal.Header className={modalToDo.modalHeader} closeButton>
           <Modal.Title className={modalToDo.modalTitle}>
             Modal title
           </Modal.Title>
-        </Modal.Header>
+        </Modal.Header> */}
+        <div className={modalToDo.modalHeader}>
+          <h5 className={modalToDo.modalTitle}>New Note</h5>
+        </div>
 
-        <Modal.Body>
+        <Modal.Body className={modalToDo.modalBody}>
           <input
             type="text"
             className={modalToDo.modal_input}
@@ -36,8 +38,12 @@ export const ModalToDo = ({ open, onClose }) => {
           />
         </Modal.Body>
 
-        <Modal.Footer>
-          <Button onClick={onClose} variant="secondary">
+        <Modal.Footer className={modalToDo.modalFooter}>
+          <Button
+            className={modalToDo.btn_secondary}
+            onClick={onClose}
+            variant="secondary"
+          >
             Close
           </Button>
           <Button variant="primary">Save changes</Button>

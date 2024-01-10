@@ -1,4 +1,4 @@
-import { ModalToDo } from "../../ModalToDo";
+import { ModalToDo } from "../Modal/ModalToDo";
 import { Header } from "../Header/Header";
 import { useState } from "react";
 import { ToDoList } from "../ToDoList/ToDoList";
