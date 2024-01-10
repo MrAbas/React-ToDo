@@ -26,7 +26,7 @@
   border: 1px solid #6c63ff;
 }
 .modalBody {
-  padding: 0 30px 128px 30px;
+  padding: 0px 30px 128px 30px;
 }
 .modalFooter {
   display: flex;
@@ -58,4 +58,8 @@
   font-weight: 500;
   line-height: 100%; /* 18px */
   text-transform: uppercase;
+}
+.modelOpen {
+  display: "block";
+  position: "absolute";
 }

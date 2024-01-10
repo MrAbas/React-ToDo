@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { Button } from "react-bootstrap";
+import cn from "classnames";
 import modalToDo from "./modalToDo.module.scss";
 import Modal from "react-bootstrap/Modal";
 
 export const ModalToDo = ({ open, onClose }) => {
-  const [modalOpen, setModalOpen] = useState("");
+  const [modalClose, setModalOpen] = useState("");
   useEffect(() => {
     if (open) {
       setModalOpen("modal show");
@@ -16,8 +17,9 @@ export const ModalToDo = ({ open, onClose }) => {
 
   return (
     <div
-      className={modalOpen} // заменить на classNames
-      style={{ display: "block", position: "absolute" }}
+      className={cn(modalClose, modalToDo.modalOpen)} // заменить на classNames
+      /*       style={{ display: "block", position: "absolute" }}
+       */
     >
       <Modal.Dialog className={modalToDo.modal_content}>
         {/* <Modal.Header className={modalToDo.modalHeader} closeButton>
