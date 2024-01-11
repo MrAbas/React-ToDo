@@ -1,56 +1,46 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useRef } from "react";
 import { Button } from "react-bootstrap";
-import cn from "classnames";
-import modalToDo from "./modalToDo.module.scss";
 import Modal from "react-bootstrap/Modal";
+import styles from "./modalToDo.module.scss";
 
-export const ModalToDo = ({ open, onClose }) => {
-  const [modalClose, setModalOpen] = useState("");
-  useEffect(() => {
-    if (open) {
-      setModalOpen("modal show");
-    } else {
-      setModalOpen("");
-    }
-  }, [open]); // каждый раз когда open меняется запускается useEffect
-
+export const ModalToDo = ({ open = false, onClose }) => {
+  console.log(open);
+  let textInput = useRef(null);
+  console.log(textInput.current?.value);
   return (
-    <div
-      className={cn(modalClose, modalToDo.modalOpen)} // заменить на classNames
-      /*       style={{ display: "block", position: "absolute" }}
-       */
-    >
-      <Modal.Dialog className={modalToDo.modal_content}>
-        {/* <Modal.Header className={modalToDo.modalHeader} closeButton>
-          <Modal.Title className={modalToDo.modalTitle}>
-            Modal title
-          </Modal.Title>
-        </Modal.Header> */}
-        <div className={modalToDo.modalHeader}>
-          <h5 className={modalToDo.modalTitle}>New Note</h5>
-        </div>
+    <div className="" style={{ display: "block", position: "initial" }}>
+      <Modal show={open}>
+        <Modal.Dialog
+          className={styles.modalDialog}
+          contentClassName={styles.modal_content}
+        >
+          <Modal.Header className={styles.modalHeader}>
+            <Modal.Title className={styles.modalTitle}>New Note</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className={styles.modalBody}>
+            <input
+              ref={textInput}
+              type="text"
+              className={styles.modal_input}
+              placeholder="Input your note..."
+              autoComplete="off"
+            />
+          </Modal.Body>
 
-        <Modal.Body className={modalToDo.modalBody}>
-          <input
-            type="text"
-            className={modalToDo.modal_input}
-            /*   placeholder="Input your note..."
-            autoComplete="off" */
-          />
-        </Modal.Body>
-
-        <Modal.Footer className={modalToDo.modalFooter}>
-          <Button
-            className={modalToDo.btn_secondary}
-            onClick={onClose}
-            variant="secondary"
-          >
-            Close
-          </Button>
-          <Button variant="primary">Save changes</Button>
-        </Modal.Footer>
-      </Modal.Dialog>
+          <Modal.Footer className={styles.modalFooter}>
+            <Button
+              className={styles.btn_secondary}
+              onClick={onClose}
+              variant="secondary"
+            >
+              Close
+            </Button>
+            <Button variant="primary" className={styles.btn_primary}>
+              Save changes
+            </Button>
+          </Modal.Footer>
+        </Modal.Dialog>
+      </Modal>
     </div>
   );
 };

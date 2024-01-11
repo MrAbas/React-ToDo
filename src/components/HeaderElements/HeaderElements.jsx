@@ -1,16 +1,15 @@
 import { Search } from "../Search/Search";
-import headerElStyles from "./headerElements.module.scss";
+import { HeaderSelect } from "../HeaderSelect/HeaderSelect";
+import { BtnTheme } from "../BtnTheme/BtnTheme";
+import styles from "./headerElements.module.scss";
 
 export const HeaderElements = () => {
+  //вынести select и тему в отдельный компонент
   return (
-    <div className={headerElStyles.setting_note}>
+    <div className={styles.setting_note}>
       <Search />
-      <select id="dropDown" className={headerElStyles.drop_down}>
-        <option>all</option>
-        <option>Complete</option>
-        <option>Incomplete</option>
-      </select>
-      <button id="theme" className={headerElStyles.theme_btn}></button>
+      <HeaderSelect />
+      <BtnTheme />
     </div>
   );
 };

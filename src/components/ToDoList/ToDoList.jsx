@@ -1,9 +1,13 @@
 import { ToDoItem } from "../ToDoItem/ToDoItem";
-import styles from "./styles.module.scss";
+import styles from "./ToDoList.module.scss";
 
 export const ToDoList = () => {
+  //localstorage
   return (
-    <ul id="list" className={styles.list}>
+    <ul className={styles.list}>
+      {/* localstorage.map((item)=>{
+return <ToDoItem id={item.id} text />
+}) */}
       <ToDoItem />
     </ul>
   );

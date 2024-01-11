@@ -1,11 +1,5 @@
-import { useState } from "react";
-import addToDo from "./AddToDo.module.scss";
+import styles from "./AddToDo.module.scss";
 
-export const AddToDo = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const onAddButton = () => {
-    setModalOpen(!modalOpen);
-  };
-
-  return <button onClick={onAddButton} className={addToDo.add_btn}></button>;
+export const AddToDo = ({ onAddButton }) => {
+  return <button onClick={onAddButton} className={styles.add_btn}></button>;
 };
