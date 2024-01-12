@@ -1,5 +1,5 @@
 import { ToDoItem } from "../ToDoItem/ToDoItem";
-import { inputValue, ModalToDo } from "../Modal/ModalToDo";
+// import { inputValue, ModalToDo } from "../Modal/ModalToDo";
 import styles from "./ToDoList.module.scss";
 
 export const ToDoList = () => {
@@ -14,10 +14,10 @@ export const ToDoList = () => {
     localStorage.toDoList = JSON.stringify(newArr);
   }; */
   //localstorage
-  if (localStorage.toDoList) {
+  /* if (localStorage.toDoList) {
   } else {
     localStorage.toDoList = JSON.stringify(inputValue);
-  }
+  } */
   return (
     <ul className={styles.list}>
       {/* localstorage.map((item)=>{
