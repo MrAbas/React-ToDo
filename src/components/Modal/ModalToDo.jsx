@@ -1,12 +1,21 @@
 import { useRef } from "react";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
+import { ModalInput } from "../ModalInput/ModalInput";
 import styles from "./modalToDo.module.scss";
 
 export const ModalToDo = ({ open = false, onClose }) => {
+  const inputValue = (e) => {
+    let info = textInput.current.value;
+    return info;
+  };
+  function Add(event) {
+    inputValue();
+    onClose();
+  }
   console.log(open);
   let textInput = useRef(null);
-  console.log(textInput.current?.value);
+  // console.log(textInput.current?.value);
   return (
     <div className="" style={{ display: "block", position: "initial" }}>
       <Modal show={open}>
@@ -18,13 +27,7 @@ export const ModalToDo = ({ open = false, onClose }) => {
             <Modal.Title className={styles.modalTitle}>New Note</Modal.Title>
           </Modal.Header>
           <Modal.Body className={styles.modalBody}>
-            <input
-              ref={textInput}
-              type="text"
-              className={styles.modal_input}
-              placeholder="Input your note..."
-              autoComplete="off"
-            />
+            <ModalInput ref={textInput} />
           </Modal.Body>
 
           <Modal.Footer className={styles.modalFooter}>
@@ -35,7 +38,11 @@ export const ModalToDo = ({ open = false, onClose }) => {
             >
               Close
             </Button>
-            <Button variant="primary" className={styles.btn_primary}>
+            <Button
+              onClick={Add}
+              className={styles.btn_primary}
+              variant="primary"
+            >
               Save changes
             </Button>
           </Modal.Footer>
