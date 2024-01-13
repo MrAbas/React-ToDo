@@ -1,5 +1,6 @@
 import { useRef } from "react";
 // import { useState } from "react";
+import addLocalStorage from "../../functions/addLocalStorage";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import { ModalInput } from "../ModalInput/ModalInput";
@@ -9,15 +10,15 @@ export const ModalToDo = ({ open = false, onClose }) => {
   // const [textInput, setTextInput] = useState("");
 
   let textInput = useRef(null);
-  const inputValue = (e) => {
+
+  /* const inputValue = (e) => {
     let info = textInput.current.value;
     return info;
-  };
+  }; */
   function Add(event) {
-    inputValue();
+    addLocalStorage(textInput.current.value);
     onClose();
   }
-  console.log(open);
 
   // console.log(textInput.current?.value);
   return (
