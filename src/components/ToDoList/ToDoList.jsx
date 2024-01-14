@@ -3,29 +3,17 @@ import { ToDoItem } from "../ToDoItem/ToDoItem";
 import styles from "./ToDoList.module.scss";
 
 export const ToDoList = () => {
-  /* const getListFromStorage = () => {
+  const getListFromStorage = () => {
     if (localStorage.toDoList) {
       return JSON.parse(localStorage.toDoList);
     }
     return [];
   };
+  let storedObject = getListFromStorage();
 
-  const setListToStorage = (newArr) => {
-    localStorage.toDoList = JSON.stringify(newArr);
-  }; */
-  //localstorage
-  /* const addLocalStorage = () => {
-    if (localStorage.toDoList) {
-    } else {
-      localStorage.toDoList = JSON.stringify(inputValue);
-    }
-  }; */
-  return (
-    <ul className={styles.list}>
-      {/* localstorage.map((item)=>{
-return <ToDoItem id={item.id} text />
-}) */}
-      <ToDoItem />
-    </ul>
-  );
+  const listItem = storedObject.map((toDo) => {
+    return <ToDoItem key={toDo.id} value={toDo.value} />;
+  });
+
+  return <ul className={styles.list}>{listItem}</ul>;
 };

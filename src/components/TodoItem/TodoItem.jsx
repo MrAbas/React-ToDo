@@ -1,6 +1,6 @@
 import styles from "./ToDoItem.module.scss";
 
-export const ToDoItem = () => {
+export const ToDoItem = (props) => {
   const getRandomInt = (max) => {
     return Math.floor(Math.random() * max);
   };
@@ -8,11 +8,10 @@ export const ToDoItem = () => {
   let keys = [];
   keys.push(key);
 
-  //сделать ключи
   return (
-    <li className={styles.note} key={keys.toString()}>
+    <li className={styles.note} key={key.toString()}>
       <input className={styles.checkbox_note} type="checkbox" />
-      <h2 className={styles.text_note}>1</h2>
+      <h2 className={styles.text_note}>{props.value}</h2>
       <div className={styles.btns_note}>
         <button className={styles.btn_change}></button>
         <button className={styles.btn_deleted}></button>
