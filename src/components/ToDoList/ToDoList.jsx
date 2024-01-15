@@ -1,19 +1,17 @@
+import { useContext } from "react";
 import { ToDoItem } from "../ToDoItem/ToDoItem";
-// import { inputValue } from "../../functions/inputValue";
 import styles from "./ToDoList.module.scss";
 
+import { ToDoContext } from "../../providers/ToDoProvider";
+
 export const ToDoList = () => {
-  const getListFromStorage = () => {
-    if (localStorage.toDoList) {
-      return JSON.parse(localStorage.toDoList);
-    }
-    return [];
-  };
-  let storedObject = getListFromStorage();
+  const { todoList } = useContext(ToDoContext);
 
-  const listItem = storedObject.map((toDo) => {
-    return <ToDoItem key={toDo.id} value={toDo.value} />;
-  });
-
-  return <ul className={styles.list}>{listItem}</ul>;
+  return (
+    <ul className={styles.list}>
+      {todoList?.map((toDo) => {
+        return <ToDoItem key={toDo.id} value={toDo.value} />;
+      })}
+    </ul>
+  );
 };

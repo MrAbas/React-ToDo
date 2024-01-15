@@ -1,11 +1,8 @@
-// import { inputValue } from "./inputValue";
-const getRandomInt = (max) => {
-  return Math.floor(Math.random() * max);
-};
+import { getRandomInt } from "../utils";
 
-const newId = getRandomInt(10000);
-
+// TODO сменить название на addToDoListLocalStorage
 const addLocalStorage = (e) => {
+  const newId = getRandomInt(10000);
   if (localStorage.toDoList) {
     let toDo = JSON.parse(localStorage.toDoList);
     toDo.push({ id: newId, value: e });
