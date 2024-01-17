@@ -1,7 +1,6 @@
 import { getRandomInt } from "../utils";
 
-// TODO сменить название на addToDoListLocalStorage
-const addLocalStorage = (e) => {
+const addToDoListLocalStorage = (e) => {
   const newId = getRandomInt(10000);
   if (localStorage.toDoList) {
     let toDo = JSON.parse(localStorage.toDoList);
@@ -12,4 +11,4 @@ const addLocalStorage = (e) => {
   }
 };
 
-export default addLocalStorage;
+export default addToDoListLocalStorage;

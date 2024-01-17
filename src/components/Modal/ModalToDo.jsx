@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef } from "react";
 import addLocalStorage from "../../shared/helpers/addLocalStorage";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
@@ -6,18 +6,21 @@ import styles from "./modalToDo.module.scss";
 import { ToDoContext } from "../../providers/ToDoProvider";
 
 export const ModalToDo = ({ open = false, onClose }) => {
-  const [textInput, setTextInput] = useState("");
-  const { addTodo } = useContext(ToDoContext);
+  const textInput = useRef();
+  const { addToDo } = useContext(ToDoContext);
+  /*const [textInput, setTextInput] = useState("");
   const onChangeInput = (e) => {
     setTextInput(e.target.value);
-  };
-  //TODO сделать ref
+  }; */
+
   function add() {
-    addTodo(textInput);
-    addLocalStorage(textInput);
+    addToDo(textInput.current.value);
+    addLocalStorage(textInput.current.value);
     onClose();
-    setTextInput("");
   }
+  /*TODO вопрос function handleClick() {
+    textInput.current.focus();
+  } */
 
   return (
     <div className="" style={{ display: "block", position: "initial" }}>
@@ -31,9 +34,10 @@ export const ModalToDo = ({ open = false, onClose }) => {
           </Modal.Header>
           <Modal.Body className={styles.modalBody}>
             <input
-              value={textInput}
+              ref={textInput}
+              // value={textInput}
               type="text"
-              onChange={onChangeInput}
+              // onChange={onChangeInput}
               className={styles.modal_input}
               placeholder="Input your note..."
               autoComplete="off"

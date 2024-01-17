@@ -17,13 +17,19 @@
   width: 100%;
   min-height: 20px;
   margin: 0;
-  color: #252525;
+
   font-family: Kanit;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
   line-height: 100%;
   text-align: center;
+}
+.light {
+  color: #252525;
+}
+.dark {
+  color: #f7f7f7;
 }
 .btns_note {
   display: flex;

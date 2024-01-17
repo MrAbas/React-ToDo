@@ -11,6 +11,20 @@
   border-radius: 5px;
   border: 1px solid #6c63ff;
 }
+.light {
+  background-color: #f7f7f7;
+  input.light::placeholder {
+    color: #c3c1e5;
+  }
+  border-color: #6c63ff;
+}
+.dark {
+  background-color: #666666;
+  input.dark::placeholder {
+    color: #666666;
+  }
+  border-color: #f7f7f7;
+}
 .btn_search {
   max-width: 21px;
   width: 100%;
@@ -23,4 +37,10 @@
   bottom: 4px;
   padding: 0;
   cursor: pointer;
+}
+.light_bs {
+  background: transparent url("../../../img/btn-search.svg") no-repeat;
+}
+.dark_bs {
+  background: transparent url("../../../img/btn-search_dark.svg") no-repeat;
 }
