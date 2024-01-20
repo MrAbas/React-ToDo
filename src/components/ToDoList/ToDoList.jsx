@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ToDoItem } from "../ToDoItem/ToDoItem";
+import { ToDoItem } from "../ToDoItem/TodoItem";
 import { ToDoContext } from "../../providers/ToDoProvider";
 import { ThemeContext } from "../../providers/ThemeProvider";
 import styles from "./ToDoList.module.scss";

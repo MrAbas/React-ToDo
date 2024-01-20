@@ -9,7 +9,6 @@ export const Search = () => {
     <div className={styles.wrapper}>
       <input
         type="text"
-        id="inputSearch"
         className={`${styles.input_search} ${styles[theme]}`}
         placeholder="Search note..."
         autoComplete="off"
