@@ -8,6 +8,7 @@ export const HeaderElements = () => {
     <div className={styles.setting_note}>
       <Search />
       <HeaderSelect />
+      {/*TODO Header поменять на ToDo */}
       <BtnTheme />
     </div>
   );

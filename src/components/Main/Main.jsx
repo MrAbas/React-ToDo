@@ -1,6 +1,6 @@
 import { ModalToDo } from "../Modal/ModalToDo";
 import { Header } from "../Header/Header";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { ToDoList } from "../ToDoList/ToDoList";
 import { AddToDo } from "../AddToDo/AddToDo";
 import { ToDoProvider } from "../../providers/ToDoProvider";

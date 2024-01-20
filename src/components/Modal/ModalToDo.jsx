@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import addLocalStorage from "../../shared/helpers/addLocalStorage";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
@@ -6,7 +6,13 @@ import styles from "./modalToDo.module.scss";
 import { ToDoContext } from "../../providers/ToDoProvider";
 
 export const ModalToDo = ({ open = false, onClose }) => {
-  const textInput = useRef();
+  const textInput = useRef(null);
+
+  useEffect(() => {
+    if (textInput.current) {
+      handleClick();
+    }
+  });
   const { addToDo } = useContext(ToDoContext);
   /*const [textInput, setTextInput] = useState("");
   const onChangeInput = (e) => {
@@ -18,10 +24,10 @@ export const ModalToDo = ({ open = false, onClose }) => {
     addLocalStorage(textInput.current.value);
     onClose();
   }
-  /*TODO вопрос function handleClick() {
+  /*TODO вопрос */
+  function handleClick() {
     textInput.current.focus();
-  } */
-
+  }
   return (
     <div className="" style={{ display: "block", position: "initial" }}>
       <Modal show={open}>
