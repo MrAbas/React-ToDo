@@ -4,16 +4,18 @@ import styles from "./search.module.scss";
 
 export const Search = () => {
   const [theme] = useContext(ThemeContext);
-  // const [btn_search] = useContext(ThemeContext);
   return (
     <div className={styles.wrapper}>
       <input
         type="text"
-        className={`${styles.input_search} ${styles[theme]}`}
+        className={`${styles.input_search} ${styles[`input_search--${theme}`]}`}
         placeholder="Search note..."
         autoComplete="off"
       ></input>
-      <button id="btnSearch" className={`${styles.btn_search}`}></button>
+      <button
+        id="btnSearch"
+        className={`${styles.btn_search} ${styles[`btn_search--${theme}`]}`}
+      ></button>
     </div>
   );
 };

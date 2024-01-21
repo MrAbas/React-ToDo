@@ -8,7 +8,7 @@ export const ToDoList = () => {
   const { todoList } = useContext(ToDoContext);
   const [theme] = useContext(ThemeContext);
   return (
-    <ul className={`${styles.list} ${styles[theme]}`}>
+    <ul className={`${styles.list} ${styles[`list--${theme}`]}`}>
       {todoList?.map((toDo) => {
         return <ToDoItem key={toDo.id} value={toDo.value} />;
       })}
