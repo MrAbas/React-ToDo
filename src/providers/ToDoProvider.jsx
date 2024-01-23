@@ -9,7 +9,8 @@ export function ToDoProvider({ children }) {
 
   const newId = getRandomInt();
   const addToDo = (e) => {
-    setToDo([...toDo, { id: newId, value: e }]);
+    const newId = getRandomInt();
+    setToDo([...toDo, { id: newId, value: e, checked: false }]);
   };
 
   const onDeleted = (id) => {
@@ -23,9 +24,18 @@ export function ToDoProvider({ children }) {
   const changeToDoList = (filteredArr) => {
     setToDo(filteredArr);
   };
+  const doneNote = (id) => {
+    const localToDo = getListFromStorage().map((toDo) => {
+      if (toDo.id === id) {
+        toDo.checked = !toDo.checked;
+      }
+      return toDo;
+    });
+    setListToStorage(localToDo);
+  };
   return (
     <ToDoContext.Provider
-      value={{ todoList: toDo, addToDo, onDeleted, changeToDoList }}
+      value={{ todoList: toDo, addToDo, onDeleted, changeToDoList, doneNote }}
     >
       {children}
     </ToDoContext.Provider>

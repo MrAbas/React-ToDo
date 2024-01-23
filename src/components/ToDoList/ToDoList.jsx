@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ToDoItem } from "../ToDoItem/ToDoItem";
+import { ToDoItem } from "../ToDoItem/TodoItem";
 import { ToDoContext } from "../../providers/ToDoProvider";
 import { ThemeContext } from "../../providers/ThemeProvider";
 import styles from "./ToDoList.module.scss";
@@ -10,7 +10,14 @@ export const ToDoList = () => {
   return (
     <ul className={`${styles.list} ${styles[theme]}`}>
       {todoList?.map((toDo) => {
-        return <ToDoItem key={toDo.id} keyId={toDo.id} value={toDo.value} />;
+        return (
+          <ToDoItem
+            key={toDo.id}
+            id={toDo.id}
+            value={toDo.value}
+            checked={toDo.checked}
+          />
+        );
       })}
     </ul>
   );
