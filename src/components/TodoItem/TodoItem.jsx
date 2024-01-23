@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import { ToDoContext } from "../../providers/ToDoProvider";
 import { ThemeContext } from "../../providers/ThemeProvider";
-import classNames from "classnames";
+import classNames from "classnames/bind";
 import styles from "./ToDoItem.module.scss";
 
 const cn = classNames.bind(styles);
+
 export const ToDoItem = (props) => {
   const { onDeleted, doneNote } = useContext(ToDoContext);
   const [theme] = useContext(ThemeContext);
