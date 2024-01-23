@@ -5,6 +5,7 @@ import styles from "./headerSelect.module.scss";
 
 export const HeaderSelect = () => {
   const [filter, setFilter] = useState("all");
+  // eslint-disable-next-line no-unused-vars
   const { toDo, changeToDoList } = useContext(ToDoContext);
 
   const filteredTodos = (e) => {
