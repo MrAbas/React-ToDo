@@ -28,6 +28,7 @@ export function ToDoProvider({ children }) {
       }
       return toDo;
     });
+    setToDo(localToDo);
     setListToStorage(localToDo);
   };
   return (
