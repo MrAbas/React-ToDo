@@ -12,8 +12,11 @@ export function ToDoProvider({ children }) {
     setToDo([...toDo, { id: newId, value: e, checked: false }]);
   };
   const onDeleted = (id) => {
-    // const deletedNotes = toDo.filter();
-    console.log(toDo);
+    const deletedNotes = toDo.filter((i) => {
+      return i.id !== id;
+    });
+    setToDo(deletedNotes);
+    setListToStorage(deletedNotes);
   };
   const doneNote = (id) => {
     const localToDo = getListFromStorage().map((toDo) => {
