@@ -10,7 +10,6 @@ export const ToDoItem = (props) => {
   const { onDeleted, doneNote } = useContext(ToDoContext);
   const [theme] = useContext(ThemeContext);
   const [checked, setChecked] = useState(props.checked);
-
   return (
     <li className={styles.note}>
       <input
@@ -22,7 +21,8 @@ export const ToDoItem = (props) => {
         className={cn("checkbox_note")}
         type="checkbox"
       />
-      <h2 className={cn("text_note", { theme, checked: checked })}>
+      {/* TODO theme!!! */}
+      <h2 className={cn("text_note", { theme: theme, checked })}>
         {props.value}
       </h2>
       <div className={styles.btns_note}>

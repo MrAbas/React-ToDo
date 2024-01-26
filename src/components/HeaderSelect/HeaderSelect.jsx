@@ -5,15 +5,21 @@ import styles from "./headerSelect.module.scss";
 
 export const HeaderSelect = () => {
   const [filter, setFilter] = useState("all");
-  // eslint-disable-next-line no-unused-vars
-  const { toDo, changeToDoList } = useContext(ToDoContext);
+
+  const { changeToDoList } = useContext(ToDoContext);
 
   const filteredTodos = (e) => {
-    const toDoLocal = getListFromStorage();
+    let toDoLocal = getListFromStorage();
+    let select = e.target.value;
     setFilter(e.target.value);
-    if (filter === "all") {
+    if (select === "all") {
       changeToDoList(toDoLocal);
-    } else if (filter === "Complete") {
+    } else if (select === "Complete") {
+      toDoLocal = toDoLocal.filter((toDo) => toDo.checked);
+      changeToDoList(toDoLocal);
+    } else if (select === "Incomplete") {
+      toDoLocal = toDoLocal.filter((toDo) => !toDo.checked);
+      changeToDoList(toDoLocal);
     }
   };
 
