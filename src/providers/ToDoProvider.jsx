@@ -2,7 +2,6 @@ import { createContext, useState } from "react";
 import getListFromStorage from "../shared/helpers/getListFromStorage";
 import { getRandomInt } from "../shared/utils";
 import setListToStorage from "../shared/helpers/setListToStorage";
-// import setListToStorage from "../shared/helpers/setListToStorage";
 
 export const ToDoContext = createContext();
 export function ToDoProvider({ children }) {
@@ -10,7 +9,7 @@ export function ToDoProvider({ children }) {
 
   const addToDo = (e) => {
     const newId = getRandomInt();
-    setToDo([...toDo, { id: newId, value: e }]);
+    setToDo([...toDo, { id: newId, value: e, checked: false }]);
   };
   const onDeleted = (id) => {
     const deletedNotes = toDo.filter((i) => {
@@ -22,9 +21,19 @@ export function ToDoProvider({ children }) {
   const changeToDoList = (filteredArr) => {
     setToDo(filteredArr);
   };
+  const doneNote = (id) => {
+    const localToDo = getListFromStorage().map((toDo) => {
+      if (toDo.id === id) {
+        toDo.checked = !toDo.checked;
+      }
+      return toDo;
+    });
+    setToDo(localToDo);
+    setListToStorage(localToDo);
+  };
   return (
     <ToDoContext.Provider
-      value={{ todoList: toDo, addToDo, onDeleted, changeToDoList }}
+      value={{ todoList: toDo, addToDo, onDeleted, changeToDoList, doneNote }}
     >
       {children}
     </ToDoContext.Provider>

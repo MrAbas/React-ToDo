@@ -6,10 +6,7 @@ import styles from "./ToDoItem.module.scss";
 export const ToDoItem = (props) => {
   const { onDeleted } = useContext(ToDoContext);
   const [theme] = useContext(ThemeContext);
-  /* const doneNote = () => {
-
-  } */
-
+  console.log(props);
   return (
     <li className={styles.note}>
       <input className={`${styles.checkbox_note} `} type="checkbox" />
