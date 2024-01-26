@@ -10,7 +10,14 @@ export const ToDoList = () => {
   return (
     <ul className={`${styles.list} ${styles[`list--${theme}`]}`}>
       {todoList?.map((toDo) => {
-        return <ToDoItem key={toDo.id} id={toDo.id} value={toDo.value} />;
+        return (
+          <ToDoItem
+            key={toDo.id}
+            id={toDo.id}
+            value={toDo.value}
+            checked={toDo.checked}
+          />
+        );
       })}
     </ul>
   );

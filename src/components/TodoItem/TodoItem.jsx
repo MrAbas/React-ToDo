@@ -1,15 +1,20 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ToDoContext } from "../../providers/ToDoProvider";
 import { ThemeContext } from "../../providers/ThemeProvider";
 import styles from "./ToDoItem.module.scss";
 
 export const ToDoItem = (props) => {
-  const { onDeleted } = useContext(ToDoContext);
+  const { onDeleted, doneNote } = useContext(ToDoContext);
   const [theme] = useContext(ThemeContext);
+  const [checked, setChecked] = useState(props.checked);
   console.log(props);
   return (
     <li className={styles.note}>
-      <input className={`${styles.checkbox_note} `} type="checkbox" />
+      <input
+        value={checked}
+        className={`${styles.checkbox_note} `}
+        type="checkbox"
+      />
       <h2 className={`${styles.text_note} ${styles[theme]}`}>{props.value}</h2>
       <div className={styles.btns_note}>
         <button className={styles.btn_change}></button>
