@@ -10,16 +10,19 @@ export const HeaderSelect = () => {
 
   const filteredTodos = (e) => {
     let toDoLocal = getListFromStorage();
-    let select = e.target.value;
     setFilter(e.target.value);
-    if (select === "all") {
-      changeToDoList(toDoLocal);
-    } else if (select === "Complete") {
-      toDoLocal = toDoLocal.filter((toDo) => toDo.checked);
-      changeToDoList(toDoLocal);
-    } else if (select === "Incomplete") {
-      toDoLocal = toDoLocal.filter((toDo) => !toDo.checked);
-      changeToDoList(toDoLocal);
+    switch (e.target.value) {
+      case "Complete":
+        toDoLocal = toDoLocal.filter((toDo) => toDo.checked);
+        changeToDoList(toDoLocal);
+        break;
+      case "Incomplete":
+        toDoLocal = toDoLocal.filter((toDo) => !toDo.checked);
+        changeToDoList(toDoLocal);
+        break;
+      default:
+        changeToDoList(toDoLocal);
+        break;
     }
   };
 
