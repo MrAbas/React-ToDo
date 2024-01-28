@@ -13,7 +13,7 @@ export const ToDoItem = (props) => {
   return (
     <li className={styles.note}>
       <input
-        value={checked}
+        checked={checked}
         onChange={() => {
           setChecked(!checked);
           doneNote(props.id);
@@ -21,13 +21,12 @@ export const ToDoItem = (props) => {
         className={`${styles.checkbox_note} `}
         type="checkbox"
       />
-      {/* <h2 className={`${styles.text_note} ${styles[theme]}`}>{props.value}</h2> */}
       <h2 className={cn("text_note", { theme, checked })}>{props.value}</h2>
       <div className={styles.btns_note}>
         <button className={styles.btn_change}></button>
         <button
           onClick={() => {
-            onDeleted(props.keyId);
+            onDeleted(props.id);
           }}
           className={styles.btn_deleted}
         ></button>

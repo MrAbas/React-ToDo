@@ -5,14 +5,24 @@ import styles from "./headerSelect.module.scss";
 
 export const HeaderSelect = () => {
   const [filter, setFilter] = useState("all");
-  const { toDo, changeToDoList } = useContext(ToDoContext);
+
+  const { changeToDoList } = useContext(ToDoContext);
 
   const filteredTodos = (e) => {
-    const toDoLocal = getListFromStorage();
+    let toDoLocal = getListFromStorage();
     setFilter(e.target.value);
-    if (filter === "all") {
-      changeToDoList(toDoLocal);
-    } else if (filter === "Complete") {
+    switch (e.target.value) {
+      case "Complete":
+        toDoLocal = toDoLocal.filter((toDo) => toDo.checked);
+        changeToDoList(toDoLocal);
+        break;
+      case "Incomplete":
+        toDoLocal = toDoLocal.filter((toDo) => !toDo.checked);
+        changeToDoList(toDoLocal);
+        break;
+      default:
+        changeToDoList(toDoLocal);
+        break;
     }
   };
 

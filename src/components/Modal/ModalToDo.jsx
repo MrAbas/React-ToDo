@@ -18,9 +18,6 @@ export const ModalToDo = ({ open = false, onClose }) => {
     addLocalStorage(textInput.current.value);
     onClose();
   }
-  /*TODO вопрос function handleClick() {
-    textInput.current.focus();
-  } */
 
   return (
     <div className="" style={{ display: "block", position: "initial" }}>
