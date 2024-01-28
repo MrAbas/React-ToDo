@@ -21,7 +21,7 @@ export const ToDoItem = (props) => {
         className={`${styles.checkbox_note} `}
         type="checkbox"
       />
-      <h2 className={cn("text_note", { theme, checked })}>{props.value}</h2>
+      <h2 className={cn("text_note", theme, { checked })}>{props.value}</h2>
       <div className={styles.btns_note}>
         <button className={styles.btn_change}></button>
         <button
