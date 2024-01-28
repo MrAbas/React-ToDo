@@ -1,3 +1,4 @@
+@import "../../variables";
 .wrapper {
   position: relative;
   max-width: 750px;
@@ -11,19 +12,20 @@
   border-radius: 5px;
   border: 1px solid #6c63ff;
 }
+//TODO объединить!!!
 .input_search--light {
   background-color: #f7f7f7;
-  input::placeholder {
-    color: #c3c1e5;
-  }
   border-color: #6c63ff;
+}
+.input_search--light::placeholder {
+  color: $light-placeholder-color;
 }
 .input_search--dark {
   background-color: #252525;
-  input::placeholder {
-    color: #666666;
-  }
   border-color: #f7f7f7;
+}
+.input_search--dark::placeholder {
+  color: $dark-placeholder-color;
 }
 
 .btn_search {
