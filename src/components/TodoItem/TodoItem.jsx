@@ -5,6 +5,7 @@ import classNames from "classnames/bind";
 import styles from "./ToDoItem.module.scss";
 import getListFromStorage from "../../shared/helpers/getListFromStorage";
 import setListToStorage from "../../shared/helpers/setListToStorage";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 const cn = classNames.bind(styles);
 
@@ -14,6 +15,8 @@ export const ToDoItem = (props) => {
   const [checked, setChecked] = useState(props.checked);
   const [textInput, setTextInput] = useState(props.value);
   const [editMode, setEditMode] = useState(false);
+  const [storedValue, setValue] = useLocalStorage("toDoList");
+
   const editToDoText = () => {
     setEditMode(!editMode);
   };
@@ -37,8 +40,8 @@ export const ToDoItem = (props) => {
           }}
           onKeyDown={(e) => {
             if (e.code === "Enter") {
-              setListToStorage(
-                getListFromStorage().map((toDo) => {
+              setValue(
+                storedValue.map((toDo) => {
                   if (toDo.id === props.id) {
                     toDo.value = textInput;
                   }

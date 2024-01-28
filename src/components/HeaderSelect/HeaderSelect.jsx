@@ -1,15 +1,16 @@
 import { useContext, useState } from "react";
 import { ToDoContext } from "../../providers/ToDoProvider";
-import getListFromStorage from "../../shared/helpers/getListFromStorage";
+// import getListFromStorage from "../../shared/helpers/getListFromStorage";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import styles from "./headerSelect.module.scss";
 
 export const HeaderSelect = () => {
   const [filter, setFilter] = useState("all");
-
+  const [storedValue] = useLocalStorage("toDoList");
   const { changeToDoList } = useContext(ToDoContext);
 
   const filteredTodos = (e) => {
-    let toDoLocal = getListFromStorage();
+    let toDoLocal = storedValue;
     setFilter(e.target.value);
     switch (e.target.value) {
       case "Complete":
