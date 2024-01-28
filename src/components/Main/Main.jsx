@@ -9,7 +9,7 @@ import styles from "./main.module.scss";
 export const Main = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
-  const onAddButton = () => {
+  const onModalOpen = () => {
     setModalOpen(!modalOpen);
   };
 
@@ -18,8 +18,8 @@ export const Main = () => {
       <ToDoProvider>
         <Header />
         <ToDoList />
-        <AddToDo onAddButton={onAddButton} />
-        <ModalToDo open={modalOpen} onClose={onAddButton} />
+        <AddToDo onAddButton={onModalOpen} />
+        <ModalToDo open={modalOpen} onClose={onModalOpen} />
       </ToDoProvider>
     </main>
   );
