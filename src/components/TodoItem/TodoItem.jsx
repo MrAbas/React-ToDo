@@ -41,7 +41,7 @@ export const ToDoItem = (props) => {
             if (e.code === "Enter") {
               setListToStorage(
                 getListFromStorage().map((toDo) => {
-                  if (toDo.value === props.value) {
+                  if (toDo.id === props.id) {
                     toDo.value = textInput;
                   }
                   return toDo;
