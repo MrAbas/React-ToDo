@@ -7,19 +7,13 @@ import { ToDoProvider } from "../../providers/ToDoProvider";
 import styles from "./main.module.scss";
 
 export const Main = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const onModalOpen = () => {
-    setModalOpen(!modalOpen);
-  };
-
   return (
     <main className={`${styles.main}`}>
       <ToDoProvider>
         <Header />
         <ToDoList />
-        <AddToDo onAddButton={onModalOpen} />
-        <ModalToDo open={modalOpen} onClose={onModalOpen} />
+        <AddToDo />
+        <ModalToDo />
       </ToDoProvider>
     </main>
   );
