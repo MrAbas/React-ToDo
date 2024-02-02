@@ -1,11 +1,19 @@
+import { useContext, useRef } from "react";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
+import { ToDoContext } from "../../providers/ToDoProvider";
 import styles from "./modalToDo.module.scss";
 
-export const ModalToDo = () => {
+export const ModalToDo = ({ show, hide }) => {
+  const textInput = useRef();
+  const { addToDo } = useContext(ToDoContext);
+  const add = () => {
+    console.log(textInput.current.value);
+    hide();
+  };
   return (
     <div className="" style={{ display: "block", position: "initial" }}>
-      <Modal>
+      <Modal show={show}>
         <Modal.Dialog
           className={styles.modalDialog}
           contentClassName={styles.modal_content}
@@ -15,6 +23,7 @@ export const ModalToDo = () => {
           </Modal.Header>
           <Modal.Body className={styles.modalBody}>
             <input
+              ref={textInput}
               type="text"
               className={styles.modal_input}
               placeholder="Input your note..."
@@ -23,10 +32,18 @@ export const ModalToDo = () => {
           </Modal.Body>
 
           <Modal.Footer className={styles.modalFooter}>
-            <Button className={styles.btn_secondary} variant="secondary">
+            <Button
+              onClick={hide}
+              className={styles.btn_secondary}
+              variant="secondary"
+            >
               Close
             </Button>
-            <Button className={styles.btn_primary} variant="primary">
+            <Button
+              onClick={add}
+              className={styles.btn_primary}
+              variant="primary"
+            >
               Save changes
             </Button>
           </Modal.Footer>
