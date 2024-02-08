@@ -2,19 +2,22 @@ import { useContext, useState } from "react";
 import { ToDoContext } from "../../providers/ToDoProvider";
 import { ThemeContext } from "../../providers/ThemeProvider";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { useDispatch } from "react-redux";
+import { onDeleted } from "../../store/toDoSlice";
 import classNames from "classnames/bind";
 import styles from "./ToDoItem.module.scss";
 
 const cn = classNames.bind(styles);
 
 export const ToDoItem = (props) => {
-  const { onDeleted, doneNote } = useContext(ToDoContext);
+  const { doneNote } = useContext(ToDoContext);
   const [theme] = useContext(ThemeContext);
   const [checked, setChecked] = useState(props.checked);
 
   const [editMode, setEditMode] = useState(false);
   const [textInput, setTextInput] = useState(props.value);
   const [storedValue, setValue] = useLocalStorage("toDoList");
+  const dispatch = useDispatch();
 
   const editToDoText = () => {
     setEditMode(!editMode);
@@ -58,7 +61,8 @@ export const ToDoItem = (props) => {
         <button onClick={editToDoText} className={styles.btn_change}></button>
         <button
           onClick={() => {
-            onDeleted(props.id);
+            // onDeleted(props.id);
+            dispatch(onDeleted(props.id));
           }}
           className={styles.btn_deleted}
         ></button>

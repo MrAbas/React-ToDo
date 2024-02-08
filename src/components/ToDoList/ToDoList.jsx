@@ -2,15 +2,17 @@ import { useContext } from "react";
 import { ToDoItem } from "../ToDoItem/TodoItem";
 import { ToDoContext } from "../../providers/ToDoProvider";
 import { ThemeContext } from "../../providers/ThemeProvider";
-
+import { useSelector } from "react-redux";
 import styles from "./ToDoList.module.scss";
 
 export const ToDoList = () => {
-  const { todoList } = useContext(ToDoContext);
+  // const { toDoList } = useContext(ToDoContext);
   const [theme] = useContext(ThemeContext);
+  const toDoList = useSelector((state) => state.toDo.toDoList);
+
   return (
     <ul className={`${styles.list} ${styles[`list--${theme}`]}`}>
-      {todoList?.map((toDo) => {
+      {toDoList?.map((toDo) => {
         return (
           <ToDoItem
             key={toDo.id}

@@ -1,20 +1,20 @@
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import addLocalStorage from "../../shared/helpers/addLocalStorage";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
-import styles from "./modalToDo.module.scss";
 import { ToDoContext } from "../../providers/ToDoProvider";
+import { useDispatch } from "react-redux";
+import styles from "./modalToDo.module.scss";
+import { addToDo } from "../../store/toDoSlice";
 
 export const ModalToDo = ({ open = false, onClose }) => {
   const textInput = useRef();
-  const { addToDo } = useContext(ToDoContext);
-  /*const [textInput, setTextInput] = useState("");
-  const onChangeInput = (e) => {
-    setTextInput(e.target.value);
-  }; */
+  // const { addToDo } = useContext(ToDoContext);
+  const dispatch = useDispatch();
 
   function add() {
-    addToDo(textInput.current.value);
+    // addToDo(textInput.current.value);
+    dispatch(addToDo(textInput.current.value));
     addLocalStorage(textInput.current.value);
     onClose();
   }
