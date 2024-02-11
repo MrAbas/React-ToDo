@@ -17,7 +17,7 @@ export function ToDoProvider({ children }) {
   const addToDo = () => {
     const value = textInput.current.value;
     setToDoListToLocal([...toDo, { value, id: newId, checked: false }]);
-    setToDo({ value, id: newId, checked: false });
+    setToDo([...toDo, { value, id: newId, checked: false }]);
   };
 
   const onDeleted = (id) => {
@@ -26,7 +26,16 @@ export function ToDoProvider({ children }) {
     setToDo(deletedNodes);
   };
 
-  const changeToDoList = () => {};
+  const doneNote = (id) => {
+    localToDo.map((toDo) => {
+      if (toDo.id === id) {
+        toDo.checked = !toDo.checked;
+      }
+      return toDo;
+    });
+    setToDoListToLocal(localToDo);
+    setToDo(localToDo);
+  };
 
   return (
     <ToDoContext.Provider
@@ -37,7 +46,7 @@ export function ToDoProvider({ children }) {
         show,
         onModalShow,
         onDeleted,
-        changeToDoList,
+        doneNote,
       }}
     >
       {children}
