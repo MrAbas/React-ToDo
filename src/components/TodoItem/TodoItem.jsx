@@ -55,7 +55,7 @@ export const ToDoItem = (props) => {
           }}
         />
       ) : (
-        <h2 className={cn("text_note", theme)}>{textInput}</h2>
+        <h2 className={cn("text_note", theme, { checked })}>{textInput}</h2>
       )}
       <div className={styles.btns_note}>
         <button

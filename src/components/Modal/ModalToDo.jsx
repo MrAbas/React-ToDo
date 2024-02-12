@@ -1,11 +1,18 @@
+import { useDispatch } from "react-redux";
+import { addToDo, onDeleted, doneNote, increment } from "../../store/toDoSlice";
+import { useContext } from "react";
+import { ToDoContext } from "../../providers/ToDoProvider";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import styles from "./modalToDo.module.scss";
-import { useContext } from "react";
-import { ToDoContext } from "../../providers/ToDoProvider";
 
 export const ModalToDo = () => {
-  const { show, addToDo, onModalShow, textInput } = useContext(ToDoContext);
+  const { show, onModalShow, textInput } = useContext(ToDoContext);
+  const dispatch = useDispatch();
+  const add = () => {
+    dispatch(addToDo(textInput.current.value));
+    onModalShow();
+  };
   return (
     <div className="" style={{ display: "block", position: "initial" }}>
       <Modal show={show}>
@@ -35,10 +42,7 @@ export const ModalToDo = () => {
               Close
             </Button>
             <Button
-              onClick={() => {
-                addToDo();
-                onModalShow();
-              }}
+              onClick={add}
               className={styles.btn_primary}
               variant="primary"
             >
