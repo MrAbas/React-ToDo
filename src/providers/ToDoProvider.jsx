@@ -1,6 +1,5 @@
 import { createContext, useRef, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { getRandomInt } from "../shared/utils";
 
 export const ToDoContext = createContext();
 export function ToDoProvider({ children }) {
@@ -13,10 +12,9 @@ export function ToDoProvider({ children }) {
   const [localToDo, setToDoListToLocal] = useLocalStorage("toDoList");
   const [toDo, setToDo] = useState(localToDo);
 
-  const onDeleted = (id) => {
+  const removeFromLocalStorage = (id) => {
     const deletedNodes = toDo.filter((i) => i.id !== id);
     setToDoListToLocal(deletedNodes);
-    setToDo(deletedNodes);
   };
 
   const doneNote = (id) => {
@@ -37,7 +35,7 @@ export function ToDoProvider({ children }) {
         textInput,
         show,
         onModalShow,
-        onDeleted,
+        removeFromLocalStorage,
         doneNote,
       }}
     >

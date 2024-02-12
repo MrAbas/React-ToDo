@@ -12,12 +12,23 @@ export const toDoSlice = createSlice({
     addToDo: (state, action) => {
       const newId = getRandomInt();
       state.toDoList.push({ id: newId, value: action.payload, checked: false });
-      console.log(state.toDoList);
     },
     onDeleted: (state, action) => {
-      console.log(1);
+      const deletedNotes = state.toDoList.filter(
+        (i) => i.id !== Number(action.payload)
+      );
+      state.toDoList = deletedNotes;
     },
-    doneNote: (state, action) => {},
+    doneNote: (state, action) => {
+      //TODO неправильно
+      const checkedNote = state.toDoList.map((toDo) => {
+        if (toDo.id === action.payload) {
+          return (toDo.checked = !toDo.checked);
+        }
+        return toDo;
+      });
+      state.toDoList = checkedNote;
+    },
   },
 });
 
