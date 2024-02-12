@@ -4,6 +4,7 @@ import { ThemeContext } from "../../providers/ThemeProvider";
 import { ToDoContext } from "../../providers/ToDoProvider";
 import classNames from "classnames/bind";
 import styles from "./ToDoItem.module.scss";
+import { useDispatch } from "react-redux";
 
 const cn = classNames.bind(styles);
 
@@ -20,6 +21,8 @@ export const ToDoItem = (props) => {
   };
 
   const [checked, setChecked] = useState(props.checked);
+
+  const dispatch = useDispatch();
 
   return (
     <li className={styles.note}>

@@ -13,13 +13,6 @@ export function ToDoProvider({ children }) {
   const [localToDo, setToDoListToLocal] = useLocalStorage("toDoList");
   const [toDo, setToDo] = useState(localToDo);
 
-  const newId = getRandomInt();
-  const addToDo = () => {
-    const value = textInput.current.value;
-    setToDoListToLocal([...toDo, { value, id: newId, checked: false }]);
-    setToDo([...toDo, { value, id: newId, checked: false }]);
-  };
-
   const onDeleted = (id) => {
     const deletedNodes = toDo.filter((i) => i.id !== id);
     setToDoListToLocal(deletedNodes);
@@ -41,7 +34,6 @@ export function ToDoProvider({ children }) {
     <ToDoContext.Provider
       value={{
         toDoList: toDo,
-        addToDo,
         textInput,
         show,
         onModalShow,
