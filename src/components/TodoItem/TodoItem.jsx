@@ -33,7 +33,7 @@ export const ToDoItem = (props) => {
         checked={checked}
         onChange={() => {
           setChecked(!checked);
-          doneNote(props.id);
+          dispatch(doneNote(props.id));
         }}
       />
       {editMode ? (

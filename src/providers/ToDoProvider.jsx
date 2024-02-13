@@ -28,6 +28,10 @@ export function ToDoProvider({ children }) {
     setToDo(localToDo);
   };
 
+  const changeToDoList = (filteredArr) => {
+    setToDo(filteredArr);
+  };
+
   return (
     <ToDoContext.Provider
       value={{
@@ -37,6 +41,7 @@ export function ToDoProvider({ children }) {
         onModalShow,
         removeFromLocalStorage,
         doneNote,
+        changeToDoList,
       }}
     >
       {children}

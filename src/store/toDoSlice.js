@@ -20,10 +20,9 @@ export const toDoSlice = createSlice({
       state.toDoList = deletedNotes;
     },
     doneNote: (state, action) => {
-      //TODO неправильно
       const checkedNote = state.toDoList.map((toDo) => {
         if (toDo.id === action.payload) {
-          return (toDo.checked = !toDo.checked);
+          toDo.checked = !toDo.checked;
         }
         return toDo;
       });

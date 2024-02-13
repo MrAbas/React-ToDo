@@ -1,16 +1,31 @@
 import { useContext, useState } from "react";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { ThemeContext } from "../../providers/ThemeProvider";
+import { ToDoContext } from "../../providers/ToDoProvider";
+import getListFromStorage from "../../shared/helpers/getListFromStorage";
 import styles from "./search.module.scss";
 
 export const Search = () => {
   const [theme] = useContext(ThemeContext);
 
   const [inputValue, setInputValue] = useState("");
+  // const [localValue, setListToStorage] = useLocalStorage("toDoList"); спросить про getListFrom
+  const { changeToDoList } = useContext(ToDoContext);
 
-  const [localValue, setListToStorage] = useLocalStorage("toDoList");
-
-  const onInputChange = (e) => {};
+  const onInputChange = (e) => {
+    // TODO
+    setInputValue(e.target.value);
+    const toDoLocal = getListFromStorage();
+    if (e.target.value === "") {
+      changeToDoList(toDoLocal);
+    } else {
+      const filteredToDoList = toDoLocal.filter((toDo) => {
+        return toDo.value.includes(e.target.value);
+      });
+      changeToDoList(filteredToDoList);
+      console.log(filteredToDoList);
+    }
+  };
 
   return (
     <div className={styles.wrapper}>
