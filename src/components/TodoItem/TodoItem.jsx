@@ -1,9 +1,8 @@
 import { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
-import { onDeleted, doneNote } from "../../store/toDoSlice";
+import { onDeleted, doneNote, changeTextToDo } from "../../store/toDoSlice";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { ThemeContext } from "../../providers/ThemeProvider";
-import { ToDoContext } from "../../providers/ToDoProvider";
 import classNames from "classnames/bind";
 import styles from "./ToDoItem.module.scss";
 
@@ -11,11 +10,9 @@ const cn = classNames.bind(styles);
 
 export const ToDoItem = (props) => {
   const [theme] = useContext(ThemeContext);
-  const { removeFromLocalStorage } = useContext(ToDoContext);
 
   const [editMode, setEditMode] = useState(false);
   const [textInput, setTextInput] = useState(props.value);
-  const [localValue, setListToStorage] = useLocalStorage("toDoList");
 
   const editToDoText = () => {
     setEditMode(!editMode);
@@ -45,15 +42,7 @@ export const ToDoItem = (props) => {
           }}
           onKeyDown={(e) => {
             if (e.code === "Enter") {
-              //TODO повтор
-              setListToStorage(
-                localValue.map((toDo) => {
-                  if (toDo.id === props.id) {
-                    toDo.value = textInput;
-                  }
-                  return toDo;
-                })
-              );
+              dispatch(changeTextToDo({ id: props.id, text: textInput }));
               setEditMode(!editMode);
             }
           }}
@@ -66,20 +55,11 @@ export const ToDoItem = (props) => {
           className={styles.btn_change}
           onClick={() => {
             editToDoText();
-            setListToStorage(
-              localValue.map((toDo) => {
-                if (toDo.id === props.id) {
-                  toDo.value = textInput;
-                }
-                return toDo;
-              })
-            );
           }}
         ></button>
         <button
           className={styles.btn_deleted}
           onClick={() => {
-            removeFromLocalStorage(props.id); // TODO LS
             dispatch(onDeleted(props.id));
           }}
         ></button>

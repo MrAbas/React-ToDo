@@ -1,29 +1,26 @@
 import { useContext, useState } from "react";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { useDispatch, useSelector } from "react-redux";
 import { ThemeContext } from "../../providers/ThemeProvider";
-import { ToDoContext } from "../../providers/ToDoProvider";
-import getListFromStorage from "../../shared/helpers/getListFromStorage";
+import { setToDoCurrent } from "../../store/toDoSlice";
 import styles from "./search.module.scss";
 
 export const Search = () => {
   const [theme] = useContext(ThemeContext);
 
   const [inputValue, setInputValue] = useState("");
-  // const [localValue, setListToStorage] = useLocalStorage("toDoList"); спросить про getListFrom
-  const { changeToDoList } = useContext(ToDoContext);
+  const { toDoListInitial } = useSelector((state) => state.todo);
+
+  const dispatch = useDispatch();
 
   const onInputChange = (e) => {
-    // TODO
     setInputValue(e.target.value);
-    const toDoLocal = getListFromStorage();
     if (e.target.value === "") {
-      changeToDoList(toDoLocal);
+      dispatch(setToDoCurrent(toDoListInitial));
     } else {
-      const filteredToDoList = toDoLocal.filter((toDo) => {
+      const filteredToDoList = toDoListInitial.filter((toDo) => {
         return toDo.value.includes(e.target.value);
       });
-      changeToDoList(filteredToDoList);
-      console.log(filteredToDoList);
+      dispatch(setToDoCurrent(filteredToDoList));
     }
   };
 

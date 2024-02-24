@@ -1,15 +1,10 @@
-import { getRandomInt } from "../utils";
-
-const addLocalStorage = (e) => {
-  const newId = getRandomInt();
+const addLocalStorage = (e, id) => {
   if (localStorage.toDoList) {
     let toDo = JSON.parse(localStorage.toDoList);
-    toDo.push({ id: newId, value: e, checked: false });
+    toDo.push({ id, value: e, checked: false });
     localStorage.toDoList = JSON.stringify(toDo);
   } else {
-    localStorage.toDoList = JSON.stringify([
-      { id: newId, value: e, checked: false },
-    ]);
+    localStorage.toDoList = JSON.stringify([{ id, value: e, checked: false }]);
   }
 };
 

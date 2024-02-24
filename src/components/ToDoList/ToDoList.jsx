@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 export const ToDoList = () => {
   const [theme] = useContext(ThemeContext);
   // const { toDoList } = useContext(ToDoContext);
-  const toDoList = useSelector((state) => state.todo.toDoList);
+  const toDoList = useSelector((state) => state.todo.toDoListCurrent);
 
   return (
     <ul className={`${styles.list} ${styles[`list--${theme}`]}`}>

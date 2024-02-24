@@ -1,18 +1,16 @@
 import { useDispatch } from "react-redux";
-import { addToDo, onDeleted, doneNote, increment } from "../../store/toDoSlice";
+import { addToDo } from "../../store/toDoSlice";
 import { useContext } from "react";
 import { ToDoContext } from "../../providers/ToDoProvider";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import styles from "./modalToDo.module.scss";
-import addLocalStorage from "../../shared/helpers/addLocalStorage";
 
 export const ModalToDo = () => {
   const { show, onModalShow, textInput } = useContext(ToDoContext);
   const dispatch = useDispatch();
   const add = () => {
     dispatch(addToDo(textInput.current.value));
-    addLocalStorage(textInput.current.value);
     onModalShow();
   };
   return (
