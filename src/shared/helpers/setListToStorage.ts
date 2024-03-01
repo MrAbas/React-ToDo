@@ -1,4 +1,4 @@
-const setListToStorage = (newArr) => {
+const setListToStorage = (newArr: {}[]) => {
   localStorage.toDoList = JSON.stringify(newArr);
 };
 
