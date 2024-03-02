@@ -29,7 +29,7 @@ export const ToDoItem: React.FC<TodoItemProps> = ({ id, title, completed }) => {
         className={`${styles.checkbox_note}`}
         type="checkbox"
       />
-      <h2 className={cn("text_note", theme)}>{title}</h2>
+      <h2 className={cn("text_note", theme, { completed })}>{title}</h2>
       <div className={styles.btns_note}>
         <button className={styles.btn_change}></button>
         <button
