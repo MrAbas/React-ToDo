@@ -70,7 +70,7 @@ export const toDoSlice = createSlice({
       action: PayloadAction<{ id: number; title: string }>
     ) {
       const { id, title } = action.payload;
-      const arr = state.initialTodos.map((toDo) => {
+      const arr = state.currentTodos.map((toDo) => {
         if (toDo.id === id) {
           toDo.title = title;
         }
@@ -79,6 +79,10 @@ export const toDoSlice = createSlice({
       state.currentTodos = arr;
       state.initialTodos = arr;
       setListToStorage(arr);
+    },
+    setToDoCurrent(state, action: PayloadAction<toDoList[]>) {
+      state.currentTodos = action.payload;
+      console.log(action.payload);
     },
   },
 });
@@ -89,6 +93,7 @@ export const {
   deletedToDo,
   completedToDo,
   changeTextToDo,
+  setToDoCurrent,
 } = toDoSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
