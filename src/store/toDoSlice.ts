@@ -65,11 +65,31 @@ export const toDoSlice = createSlice({
       state.initialTodos = checkedNote;
       setListToStorage(checkedNote);
     },
+    changeTextToDo(
+      state,
+      action: PayloadAction<{ id: number; title: string }>
+    ) {
+      const { id, title } = action.payload;
+      const arr = state.initialTodos.map((toDo) => {
+        if (toDo.id === id) {
+          toDo.title = title;
+        }
+        return toDo;
+      });
+      state.currentTodos = arr;
+      state.initialTodos = arr;
+      setListToStorage(arr);
+    },
   },
 });
 
-export const { onModalShow, addToDo, deletedToDo, completedToDo } =
-  toDoSlice.actions;
+export const {
+  onModalShow,
+  addToDo,
+  deletedToDo,
+  completedToDo,
+  changeTextToDo,
+} = toDoSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 /* export const selectCount = (state) => {
