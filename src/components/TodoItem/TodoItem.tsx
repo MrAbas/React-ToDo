@@ -58,7 +58,13 @@ export const ToDoItem: React.FC<TodoItemProps> = ({ id, title, completed }) => {
         <h2 className={cn("text_note", theme, { completed })}>{textInput}</h2>
       )}
       <div className={styles.btns_note}>
-        <button className={styles.btn_change} onClick={editToDoText}></button>
+        <button
+          className={styles.btn_change}
+          onClick={() => {
+            editToDoText();
+            dispatch(changeTextToDo({ id, title: textInput }));
+          }}
+        ></button>
         <button
           className={styles.btn_deleted}
           onClick={() => {
