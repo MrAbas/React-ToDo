@@ -82,7 +82,6 @@ export const toDoSlice = createSlice({
     },
     setToDoCurrent(state, action: PayloadAction<toDoList[]>) {
       state.currentTodos = action.payload;
-      console.log(action.payload);
     },
   },
 });
