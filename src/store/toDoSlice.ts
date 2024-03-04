@@ -3,6 +3,7 @@ import { getRandomInt } from "../shared/utils";
 import getListFromStorage from "../shared/helpers/getListFromStorage";
 import addLocalStorage from "../shared/helpers/addLocalStorage";
 import setListToStorage from "../shared/helpers/setListToStorage";
+import { fetchPokemonByName } from "./actions";
 
 interface toDoList {
   id: number;
@@ -16,12 +17,14 @@ export type TodosState = {
   currentTodos: toDoList[];
   initialTodos: toDoList[];
   modalShow: boolean;
+  todo: [];
 }; //TODO можно вынести в интерфейс
 
 const initialState: TodosState = {
   currentTodos: getListFromLS,
   initialTodos: getListFromLS,
   modalShow: false,
+  todo: [],
 };
 
 export const toDoSlice = createSlice({
@@ -84,6 +87,25 @@ export const toDoSlice = createSlice({
       state.currentTodos = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    // When our request is pending:
+    // - store the 'pending' state as the status for the corresponding pokemon name
+    builder.addCase(fetchPokemonByName.pending, (state, action) => {
+      // state.statusByName[action.meta.arg] = "pending";    кидает загрузку
+    });
+    // When our request is fulfilled:
+    // - store the 'fulfilled' state as the status for the corresponding pokemon name
+    // - and store the received payload as the data for the corresponding pokemon name
+    builder.addCase(fetchPokemonByName.fulfilled, (state, action) => {
+      // state.statusByName[action.meta.arg] = "fulfilled";
+      state.todo = action.payload;
+    });
+    // When our request is rejected:
+    // - store the 'rejected' state as the status for the corresponding pokemon name
+    builder.addCase(fetchPokemonByName.rejected, (state, action) => {
+      // state.statusByName[action.meta.arg] = "rejected";     на случай ошибки
+    });
+  },
 });
 
 export const {
@@ -98,6 +120,6 @@ export const {
 // Other code such as selectors can use the imported `RootState` type
 /* export const selectCount = (state) => {
   return state.todo.currentTodos.values, state.todo.initialTodos.values;
-}; //TODO разобрать UseSelector */
+}; */
 
 export default toDoSlice.reducer;
