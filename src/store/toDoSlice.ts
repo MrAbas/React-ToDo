@@ -16,7 +16,7 @@ export type TodosState = {
   currentTodos: toDoList[];
   initialTodos: toDoList[];
   modalShow: boolean;
-};
+}; //TODO можно вынести в интерфейс
 
 const initialState: TodosState = {
   currentTodos: getListFromLS,

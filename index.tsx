@@ -84,5 +84,5 @@ function getFavoriteNumber(): number {
   return "123";
 }
 
-//пишется вначалеб отменяет проверку тс
+//пишется вначале отменяет проверку тс
 // @ts-nocheck

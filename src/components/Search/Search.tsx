@@ -4,12 +4,13 @@ import { setToDoCurrent } from "../../store/toDoSlice";
 // import { ThemeContext } from "../../providers/ThemeProvider";
 import { useAppSelector } from "../../hooks/hook";
 import styles from "./search.module.scss";
+import { initialTodosSelector } from "../../store/selectors";
 
 export const Search = () => {
   // const [theme] = useContext(ThemeContext);
   const [inputValue, setInputValue] = useState("");
   const dispatch = useAppDispatch();
-  const { initialTodos } = useAppSelector((state) => state.todo);
+  const initialTodos = useAppSelector(initialTodosSelector);
 
   const onInputChange = (e) => {
     setInputValue(e.target.value);

@@ -55,11 +55,11 @@ export default function indexReactTypes({ a, b }: { a: string; b: number }) {
 //generic
 /* export interface ReactTypesProps<T> {
   a: T;
-  b: string;
-
+  b: number;
+  c: boolean;
 }
-const value:ReactTypesProps<string> = {a:'123', b:'123'}
-console.log(value) */
+const value: ReactTypesProps<string> = { a: "123", b: 123, c: false };
+console.log(value); */
 
 /* // useState
 export default function indexReactTypes() {

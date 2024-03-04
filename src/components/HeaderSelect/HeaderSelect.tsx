@@ -4,10 +4,10 @@ import { setToDoCurrent } from "../../store/toDoSlice";
 import styles from "./headerSelect.module.scss";
 
 export const HeaderSelect = () => {
-  const { initialTodos, currentTodos } = useAppSelector((state) => state.todo);
+  const { initialTodos } = useAppSelector((state) => state.todo);
   const dispatch = useAppDispatch();
 
-  const filteredTodos = (e) => {
+  const filteredTodos = (e: any) => {
     switch (e.target.value) {
       case "Complete":
         const toDoComplete = initialTodos.filter((toDo) => toDo.completed);
