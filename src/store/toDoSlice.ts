@@ -88,20 +88,13 @@ export const toDoSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // When our request is pending:
-    // - store the 'pending' state as the status for the corresponding pokemon name
     builder.addCase(fetchPokemonByName.pending, (state, action) => {
       // state.statusByName[action.meta.arg] = "pending";    кидает загрузку
     });
-    // When our request is fulfilled:
-    // - store the 'fulfilled' state as the status for the corresponding pokemon name
-    // - and store the received payload as the data for the corresponding pokemon name
     builder.addCase(fetchPokemonByName.fulfilled, (state, action) => {
       // state.statusByName[action.meta.arg] = "fulfilled";
       state.todo = action.payload;
     });
-    // When our request is rejected:
-    // - store the 'rejected' state as the status for the corresponding pokemon name
     builder.addCase(fetchPokemonByName.rejected, (state, action) => {
       // state.statusByName[action.meta.arg] = "rejected";     на случай ошибки
     });
