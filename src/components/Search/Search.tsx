@@ -1,18 +1,16 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useAppDispatch } from "../../store";
 import { setToDoCurrent } from "../../store/toDoSlice";
-// import { ThemeContext } from "../../providers/ThemeProvider";
 import { useAppSelector } from "../../hooks/hook";
-import styles from "./search.module.scss";
 import { initialTodosSelector } from "../../store/selectors";
+import styles from "./search.module.scss";
 
 export const Search = () => {
-  // const [theme] = useContext(ThemeContext);
   const [inputValue, setInputValue] = useState("");
   const dispatch = useAppDispatch();
   const initialTodos = useAppSelector(initialTodosSelector);
 
-  const onInputChange = (e) => {
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     if (e.target.value === "") {
       dispatch(setToDoCurrent(initialTodos));

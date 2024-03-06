@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-import { ThemeContext } from "../../providers/ThemeProvider";
+import { useState } from "react";
 import { useAppDispatch } from "../../store";
 import {
   changeTextToDo,
@@ -7,6 +6,7 @@ import {
   deletedToDo,
 } from "../../store/toDoSlice";
 import classNames from "classnames/bind";
+import { useThemeContext } from "../../hooks/ThemeContext";
 import styles from "./ToDoItem.module.scss";
 
 const cn = classNames.bind(styles);
@@ -18,7 +18,7 @@ interface TodoItemProps {
 }
 
 export const ToDoItem: React.FC<TodoItemProps> = ({ id, title, completed }) => {
-  const theme = useContext(ThemeContext);
+  const { theme } = useThemeContext();
   const dispatch = useAppDispatch();
 
   const [complete, setComplete] = useState(completed);

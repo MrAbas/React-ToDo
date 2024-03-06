@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import { useAppSelector } from "../../hooks/hook";
 import { useAppDispatch } from "../../store";
 import { setToDoCurrent } from "../../store/toDoSlice";
@@ -7,7 +8,7 @@ export const HeaderSelect = () => {
   const { initialTodos } = useAppSelector((state) => state.todo);
   const dispatch = useAppDispatch();
 
-  const filteredTodos = (e: any) => {
+  const filteredTodos = (e: ChangeEvent<HTMLSelectElement>) => {
     switch (e.target.value) {
       case "Complete":
         const toDoComplete = initialTodos.filter((toDo) => toDo.completed);

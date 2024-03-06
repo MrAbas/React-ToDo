@@ -57,16 +57,23 @@ export const toDoSlice = createSlice({
       setListToStorage(deletedNotes);
     },
     completedToDo(state, action: PayloadAction<{ id: number }>) {
-      const checkedNote = state.currentTodos.map((toDo) => {
+      const checkedNoteCurrent = state.currentTodos.map((toDo) => {
         const { id } = action.payload;
         if (toDo.id === id) {
           toDo.completed = !toDo.completed;
         }
         return toDo;
       });
-      state.currentTodos = checkedNote;
-      state.initialTodos = checkedNote;
-      setListToStorage(checkedNote);
+      const checkedNoteInitial = state.initialTodos.map((toDo) => {
+        const { id } = action.payload;
+        if (toDo.id === id) {
+          toDo.completed = !toDo.completed;
+        }
+        return toDo;
+      });
+      state.currentTodos = checkedNoteCurrent; //1
+      state.initialTodos = checkedNoteInitial; //3
+      setListToStorage(checkedNoteInitial);
     },
     changeTextToDo(
       state,
