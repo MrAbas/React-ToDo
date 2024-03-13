@@ -11,3 +11,11 @@ export const currentTodosSelector = (state: RootState) => {
 export const initialTodosSelector = (state: RootState) => {
   return state.todo.initialTodos;
 };
+
+export const todosAsyncSelector = (state: RootState) => {
+  return state.todo.todoAsync;
+};
+
+export const commentsAsyncSelector = (state: RootState) => {
+  return state.todo.commentAsync;
+};

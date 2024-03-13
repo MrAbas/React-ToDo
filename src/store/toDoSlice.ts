@@ -3,12 +3,17 @@ import { getRandomInt } from "../shared/utils";
 import getListFromStorage from "../shared/helpers/getListFromStorage";
 import addLocalStorage from "../shared/helpers/addLocalStorage";
 import setListToStorage from "../shared/helpers/setListToStorage";
-import { fetchPokemonByName } from "./actions";
+import { fetchComment } from "./actions";
 
 interface toDoList {
   id: number;
   title: string;
   completed: boolean;
+}
+
+interface comment {
+  id: number;
+  name: string;
 }
 
 const getListFromLS = getListFromStorage();
@@ -17,14 +22,16 @@ export type TodosState = {
   currentTodos: toDoList[];
   initialTodos: toDoList[];
   modalShow: boolean;
-  todo: [];
+  todoAsync: [];
+  commentAsync: comment[];
 }; //TODO можно вынести в интерфейс
 
 const initialState: TodosState = {
   currentTodos: getListFromLS,
   initialTodos: getListFromLS,
   modalShow: false,
-  todo: [],
+  todoAsync: [],
+  commentAsync: [],
 };
 
 export const toDoSlice = createSlice({
@@ -73,7 +80,7 @@ export const toDoSlice = createSlice({
       });
       state.currentTodos = checkedNoteCurrent; //1
       state.initialTodos = checkedNoteInitial; //3
-      setListToStorage(checkedNoteInitial);
+      setListToStorage(checkedNoteInitial); //TODO можно же просто подставить state.initialTodos
     },
     changeTextToDo(
       state,
@@ -95,15 +102,9 @@ export const toDoSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchPokemonByName.pending, (state, action) => {
-      // state.statusByName[action.meta.arg] = "pending";    кидает загрузку
-    });
-    builder.addCase(fetchPokemonByName.fulfilled, (state, action) => {
-      // state.statusByName[action.meta.arg] = "fulfilled";
-      state.todo = action.payload;
-    });
-    builder.addCase(fetchPokemonByName.rejected, (state, action) => {
-      // state.statusByName[action.meta.arg] = "rejected";     на случай ошибки
+    builder.addCase(fetchComment.fulfilled, (state, action) => {
+      // state.todoAsync = action.payload;
+      state.commentAsync = action.payload;
     });
   },
 });

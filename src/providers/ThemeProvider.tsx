@@ -11,11 +11,6 @@ const defaultState = {
 const ThemeContext = React.createContext<IThemeContext>(defaultState);
 
 export const ThemeProvider = ({ children }) => {
-  /* const [theme, setTheme] = useState(
-    localStorage.theme ? localStorage.theme : "light"
-  );
-  value={[theme, setTheme]} */
-
   const [theme, setTheme] = useState(
     localStorage.theme ? localStorage.theme : "light"
   );
