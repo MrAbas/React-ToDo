@@ -19,3 +19,7 @@ export const todosAsyncSelector = (state: RootState) => {
 export const commentsAsyncSelector = (state: RootState) => {
   return state.todo.commentAsync;
 };
+
+export const paginationNumberSelector = (state: RootState) => {
+  return state.todo.paginationNumber;
+};

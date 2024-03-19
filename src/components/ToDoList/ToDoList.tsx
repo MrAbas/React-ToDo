@@ -5,13 +5,14 @@ import { ToDoItem } from "../ToDoItem/TodoItem";
 import {
   commentsAsyncSelector,
   currentTodosSelector,
+  paginationNumberSelector,
   todosAsyncSelector,
 } from "../../store/selectors";
 import { fetchTodo, fetchComment } from "../../store/actions";
 import { useAppDispatch } from "../../store";
 import { useThemeContext } from "../../hooks/ThemeContext";
-import styles from "./ToDoList.module.scss";
 import { PaginationTodo } from "../PaginationTodo/PaginationTodo";
+import styles from "./ToDoList.module.scss";
 
 export const ToDoList: React.FC = () => {
   const { theme } = useThemeContext();
@@ -27,26 +28,26 @@ export const ToDoList: React.FC = () => {
   const commentsAsync = useAppSelector(commentsAsyncSelector);
   const [currentComments, setCurrentComments] = useState([]);
   //Pagination
-  const [currentPage, setCurrentPage] = useState(1); //текущая страница при открытии
-  const countTodos = 10; //кол-во todo на странице
+  const countTodos = 15; //кол-во todo на странице
+  const page = useAppSelector(paginationNumberSelector);
 
-  const lastCountryIndex = currentPage * countTodos;
-  const firstCountryIndex = lastCountryIndex - countTodos;
-  const currentPageNow = commentsAsync.slice(
-    firstCountryIndex,
-    lastCountryIndex
-  );
   useEffect(() => {
-    let paginationIndex = 5; // взять из redux
+    const lastCountryIndex = page * countTodos;
+    const firstCountryIndex = lastCountryIndex - countTodos;
+
     //вывести туду с 50 до 60
     if (commentsAsync.length > 0) {
-      setCurrentPage();
+      const currentPageNow = commentsAsync.slice(
+        firstCountryIndex,
+        lastCountryIndex
+      );
+      setCurrentComments(currentPageNow);
     }
-  }, [commentsAsync]); //paginationIndex передать в зависимости
+  }, [commentsAsync, page]); //paginationIndex передать в зависимости
 
   return (
     <div>
-      {commentsAsync.length > 0 && (
+      {currentComments.length > 0 && (
         <PaginationTodo
           countTodos={countTodos}
           totalTodos={commentsAsync.length}
@@ -68,7 +69,7 @@ export const ToDoList: React.FC = () => {
         {/* {toDoList?.map((toDo) => (
         <ToDoItem key={toDo.id} {...toDo} />
       ))} */}
-        {commentsAsync?.map((comment) => (
+        {currentComments?.map((comment) => (
           <ToDoItem
             key={comment.id}
             id={comment.id}

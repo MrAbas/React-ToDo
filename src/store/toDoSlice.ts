@@ -24,6 +24,7 @@ export type TodosState = {
   modalShow: boolean;
   todoAsync: [];
   commentAsync: comment[];
+  paginationNumber: number;
 }; //TODO можно вынести в интерфейс
 
 const initialState: TodosState = {
@@ -32,6 +33,7 @@ const initialState: TodosState = {
   modalShow: false,
   todoAsync: [],
   commentAsync: [],
+  paginationNumber: 1,
 };
 
 export const toDoSlice = createSlice({
@@ -100,6 +102,10 @@ export const toDoSlice = createSlice({
     setToDoCurrent(state, action: PayloadAction<toDoList[]>) {
       state.currentTodos = action.payload;
     },
+    onPaginationNumber(state, action: PayloadAction<number>) {
+      const page = action.payload;
+      state.paginationNumber = page;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchComment.fulfilled, (state, action) => {
@@ -116,6 +122,7 @@ export const {
   completedToDo,
   changeTextToDo,
   setToDoCurrent,
+  onPaginationNumber,
 } = toDoSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

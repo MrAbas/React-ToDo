@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { commentsAsyncSelector } from "../../store/selectors";
 import { useAppSelector } from "../../hooks/hook";
 import { memo } from "react";
+import { useAppDispatch } from "../../store";
+import { onPaginationNumber } from "../../store/toDoSlice";
 
 interface paginationProps {
   countTodos: number;
@@ -9,14 +11,13 @@ interface paginationProps {
 }
 
 export const PaginationTodo: React.FC<paginationProps> = memo(
-  ({ countTodos, totalTodos }) => {
-    const [pageNumbers, setPageNumbers] = useState([]);
+  ({ countTodos }) => {
+    const [pageNumbers, setPageNumbers] = useState<number[]>([]);
     const commentsAsync = useAppSelector(commentsAsyncSelector);
 
     useEffect(() => {
       if (commentsAsync.length > 0) {
         let newPages = [];
-        console.log(1);
         for (
           let i = 1;
           i <= Math.ceil(commentsAsync.length / countTodos);
@@ -26,15 +27,23 @@ export const PaginationTodo: React.FC<paginationProps> = memo(
         }
         setPageNumbers(newPages);
       }
-      console.log(pageNumbers);
     }, [commentsAsync]);
     //Todo вывести в redux номер pagination по  onclick
+    const dispatch = useAppDispatch();
+    const changePage = (e: number) => {
+      dispatch(onPaginationNumber(e));
+    };
     return (
       <nav aria-label="Page navigation example">
         <ul className="pagination">
           {pageNumbers.map((number) => (
             <li className="page-item" key={number}>
-              <a className="page-link" href="/#" aria-label="Previous">
+              <a
+                className="page-link"
+                href="/#"
+                aria-label="Previous"
+                onClick={() => changePage(number)}
+              >
                 {number}
               </a>
             </li>
