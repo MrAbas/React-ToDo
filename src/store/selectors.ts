@@ -23,3 +23,10 @@ export const commentsAsyncSelector = (state: RootState) => {
 export const paginationNumberSelector = (state: RootState) => {
   return state.todo.paginationNumber;
 };
+
+export const statusSelector = (state: RootState) => {
+  return state.todo.status;
+};
+export const errorSelector = (state: RootState) => {
+  return state.todo.error;
+};

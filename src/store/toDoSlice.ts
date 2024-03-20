@@ -25,6 +25,8 @@ export type TodosState = {
   todoAsync: [];
   commentAsync: comment[];
   paginationNumber: number;
+  status: "resolved" | "loading" | "error";
+  error: string;
 }; //TODO можно вынести в интерфейс
 
 const initialState: TodosState = {
@@ -34,6 +36,8 @@ const initialState: TodosState = {
   todoAsync: [],
   commentAsync: [],
   paginationNumber: 1,
+  status: null,
+  error: null,
 };
 
 export const toDoSlice = createSlice({
@@ -108,9 +112,17 @@ export const toDoSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchComment.pending, (state, action) => {
+      state.status = "loading";
+    });
     builder.addCase(fetchComment.fulfilled, (state, action) => {
+      state.status = "resolved";
       // state.todoAsync = action.payload;
       state.commentAsync = action.payload;
+    });
+    builder.addCase(fetchComment.rejected, (state, action) => {
+      state.status = "error";
+      state.error = action.error.message;
     });
   },
 });
