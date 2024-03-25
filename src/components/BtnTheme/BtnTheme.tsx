@@ -6,6 +6,7 @@ import styles from "./theme.module.scss";
 export const BtnTheme = () => {
   const { theme, toggleTheme } = useThemeContext();
   const notify = () => toast(`${theme} theme!`);
+  //TODO ошибка вывода
 
   return (
     <button

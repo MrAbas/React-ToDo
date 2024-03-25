@@ -1,9 +1,10 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getRandomInt } from "../shared/utils";
 import getListFromStorage from "../shared/helpers/getListFromStorage";
 import addLocalStorage from "../shared/helpers/addLocalStorage";
 import setListToStorage from "../shared/helpers/setListToStorage";
 import { fetchComment } from "./actions";
+import axios from "axios";
 
 interface toDoList {
   id: number;
@@ -22,7 +23,7 @@ export type TodosState = {
   currentTodos: toDoList[];
   initialTodos: toDoList[];
   modalShow: boolean;
-  todoAsync: [];
+  todoAsync: toDoList[];
   commentAsync: comment[];
   paginationNumber: number;
   status: "resolved" | "loading" | "error";
@@ -39,6 +40,14 @@ const initialState: TodosState = {
   status: null,
   error: null,
 };
+
+export const fetchToDo = createAsyncThunk(
+  "toDoList/fetchTodo",
+  async (name, { rejectWithValue }) => {
+    const response = await axios("https://jsonplaceholder.typicode.com/todos");
+    return response.data;
+  }
+); //TODO не экспортируется с actions.js
 
 export const toDoSlice = createSlice({
   name: "toDoList",
@@ -112,15 +121,26 @@ export const toDoSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchComment.pending, (state, action) => {
+    builder.addCase(fetchComment.pending, (state) => {
       state.status = "loading";
     });
     builder.addCase(fetchComment.fulfilled, (state, action) => {
       state.status = "resolved";
-      // state.todoAsync = action.payload;
       state.commentAsync = action.payload;
     });
     builder.addCase(fetchComment.rejected, (state, action) => {
+      state.status = "error";
+      state.error = action.error.message;
+    });
+
+    builder.addCase(fetchToDo.pending, (state) => {
+      state.status = "loading";
+    });
+    builder.addCase(fetchToDo.fulfilled, (state, action) => {
+      state.status = "resolved";
+      state.todoAsync = action.payload;
+    });
+    builder.addCase(fetchToDo.rejected, (state, action) => {
       state.status = "error";
       state.error = action.error.message;
     });

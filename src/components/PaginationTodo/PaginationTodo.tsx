@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { commentsAsyncSelector } from "../../store/selectors";
+import { todosAsyncSelector } from "../../store/selectors";
 import { useAppSelector } from "../../hooks/hook";
 import { memo } from "react";
 import { useAppDispatch } from "../../store";
@@ -13,7 +13,7 @@ interface paginationProps {
 export const PaginationTodo: React.FC<paginationProps> = memo(
   ({ countTodos }) => {
     const [pageNumbers, setPageNumbers] = useState<number[]>([]);
-    const commentsAsync = useAppSelector(commentsAsyncSelector);
+    const commentsAsync = useAppSelector(todosAsyncSelector);
 
     useEffect(() => {
       if (commentsAsync.length > 0) {
@@ -24,11 +24,12 @@ export const PaginationTodo: React.FC<paginationProps> = memo(
           i++
         ) {
           newPages.push(i);
+          //TODO slice pagination
         }
         setPageNumbers(newPages);
       }
     }, [commentsAsync]);
-    //Todo вывести в redux номер pagination по  onclick
+
     const dispatch = useAppDispatch();
     const changePage = (e: number) => {
       dispatch(onPaginationNumber(e));
