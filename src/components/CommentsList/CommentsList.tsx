@@ -57,7 +57,7 @@ export const CommentsList: React.FC = () => {
       {currentComments.length > 0 && (
         <PaginationTodo
           countTodos={countСomments}
-          totalTodos={commentsAsync.length}
+          allTodos={commentsAsync.length}
         />
       )}
 

@@ -15,6 +15,7 @@ interface toDoList {
 interface comment {
   id: number;
   name: string;
+  completed: boolean;
 }
 
 const getListFromLS = getListFromStorage();
@@ -53,7 +54,7 @@ export const toDoSlice = createSlice({
   name: "toDoList",
   initialState,
   reducers: {
-    onModalShow(state, action) {
+    onModalShow(state, acion) {
       state.modalShow = !state.modalShow;
     },
     addToDo(state, action: PayloadAction<string>) {

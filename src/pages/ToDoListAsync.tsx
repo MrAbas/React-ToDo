@@ -56,10 +56,7 @@ export const ToDoListAsync: React.FC = () => {
   return (
     <div>
       {currentTodos.length > 0 && (
-        <PaginationTodo
-          countTodos={countTodos}
-          totalTodos={todosAsync.length}
-        />
+        <PaginationTodo countTodos={countTodos} allTodos={todosAsync.length} />
       )}
 
       {status === "loading" && (
